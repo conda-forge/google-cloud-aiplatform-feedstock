@@ -1,5 +1,5 @@
 {% set name = "google-cloud-aiplatform" %}
-{% set version = "1.10.0" %}
+{% set version = "1.11.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/google-cloud-aiplatform-{{ version }}.tar.gz
-  sha256: 89d2936985eaf71a52152fe62bae9d7554dec6948032526b99ec05a049d1ee39
+  sha256: 7768c740e455f09ea89eb53f33f8547792102d5466e8185e6ce55ba98f11a9db
 
 build:
   script: {{ PYTHON }} -m pip install . -vv
-  number: 1
+  number: 0
 
 requirements:
   host:
@@ -19,11 +19,11 @@ requirements:
     - pip
   run:
     - python
-    - google-api-core-grpc >=1.26.0,<3.0.0dev
+    - google-api-core-grpc >=1.31.5,<3.0.0dev,!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0
     - google-cloud-bigquery >=1.15.0,<3.0.0dev
-    - google-cloud-storage >=1.32.0,<2.0.0dev
+    - google-cloud-storage >=1.32.0,<3.0.0dev
     - packaging >=14.3
-    - proto-plus >=1.10.1
+    - proto-plus >=1.15.0
 
 test:
   imports:
