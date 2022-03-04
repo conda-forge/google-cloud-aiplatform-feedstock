@@ -19,11 +19,11 @@ requirements:
     - pip
   run:
     - python
-    - google-api-core-grpc >=1.26.0,<3.0.0dev
+    - google-api-core-grpc >=1.31.5,<3.0.0dev,!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0
     - google-cloud-bigquery >=1.15.0,<3.0.0dev
-    - google-cloud-storage >=1.32.0,<2.0.0dev
+    - google-cloud-storage >=1.32.0,<3.0.0dev
     - packaging >=14.3
-    - proto-plus >=1.10.1
+    - proto-plus >=1.15.0
 
 test:
   imports:
