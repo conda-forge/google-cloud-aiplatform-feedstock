@@ -31,6 +31,7 @@ requirements:
 test:
   imports:
     - google
+    - vertexai
   commands:
     - pip check
   requires:
