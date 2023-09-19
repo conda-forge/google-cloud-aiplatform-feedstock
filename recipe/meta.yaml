@@ -34,7 +34,8 @@ requirements:
 test:
   imports:
     - google
-    - vertex_ray
+    # vertex_ray is an extra and shouldn't be tested unless we want to add those extras
+    # - vertex_ray
     - vertexai
   commands:
     - pip check
