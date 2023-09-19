@@ -34,6 +34,7 @@ requirements:
 test:
   imports:
     - google
+    - vertex_ray
     - vertexai
   commands:
     - pip check
