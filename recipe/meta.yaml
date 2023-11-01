@@ -10,7 +10,10 @@ source:
   sha256: c35eb179fa3107c262024a63bb4a3dc1887678424a0b9f49f0da3f5179896186
 
 build:
-  script: {{ PYTHON }} -m pip install . -vv
+  skip: true  # [py<38]
+  entry_points:
+    - tb-gcp-uploader=google.cloud.aiplatform.tensorboard.uploader_main:run_main
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
 requirements:
@@ -30,6 +33,7 @@ requirements:
     - google-cloud-bigquery-core >=1.15.0,<4.0.0dev
     - google-cloud-resource-manager >=1.3.3,<3.0.0dev
     - shapely <3.0.0dev
+    - setuptools  # [py>=312]
 
 test:
   imports:
