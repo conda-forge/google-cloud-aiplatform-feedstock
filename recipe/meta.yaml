@@ -1,5 +1,5 @@
 {% set name = "google-cloud-aiplatform" %}
-{% set version = "1.35.0" %}
+{% set version = "1.36.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,14 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/google-cloud-aiplatform-{{ version }}.tar.gz
-  sha256: 37fba7528739097463331d19695aab636286b029c7d0a0c021620d30d314015c
+  sha256: c35eb179fa3107c262024a63bb4a3dc1887678424a0b9f49f0da3f5179896186
 
 build:
-  script: {{ PYTHON }} -m pip install . -vv
-  number: 1
+  skip: true  # [py<38]
+  entry_points:
+    - tb-gcp-uploader=google.cloud.aiplatform.tensorboard.uploader_main:run_main
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
 
 requirements:
   build:
@@ -30,6 +33,7 @@ requirements:
     - google-cloud-bigquery-core >=1.15.0,<4.0.0dev
     - google-cloud-resource-manager >=1.3.3,<3.0.0dev
     - shapely <3.0.0dev
+    - setuptools  # [py>=312]
 
 test:
   imports:
