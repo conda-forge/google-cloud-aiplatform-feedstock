@@ -1,5 +1,5 @@
 {% set name = "google-cloud-aiplatform" %}
-{% set version = "1.36.1" %}
+{% set version = "1.36.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/google-cloud-aiplatform-{{ version }}.tar.gz
-  sha256: 9792ac1f7855cda11d92e24d414a6a1e0e13f9ea33e4ea6ee60a8d4854b1c16f
+  sha256: 26c0eee7b9c964d2f493e0ba9f2ba669a569ca4ba6564eb469ecf15bb33b3df8
 
 build:
   skip: true  # [py<38]
@@ -24,6 +24,7 @@ requirements:
     - python
     - pip
   run:
+    - google-api-core >=1.32.0,<3.0.0dev,!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*
     - python
     - google-api-core-grpc >=1.32.0,<3.0.0dev,!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*
     - proto-plus >=1.22.0,<2.0.0dev
