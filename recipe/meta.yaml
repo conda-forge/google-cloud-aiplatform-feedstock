@@ -1,5 +1,5 @@
 {% set name = "google-cloud-aiplatform" %}
-{% set version = "1.42.0" %}
+{% set version = "1.42.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/google-cloud-aiplatform-{{ version }}.tar.gz
-  sha256: 925bd7c05b8479d6ee6d6d213b52aae48f9acddd78e954ca7d05d20247ea53e3
+  sha256: 679068e068e29059d673a6410483fea762286fa07739d684fb1b4626698e0805
 
 build:
   skip: true  # [py<38]
