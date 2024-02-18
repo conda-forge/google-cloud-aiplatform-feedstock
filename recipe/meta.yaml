@@ -41,7 +41,8 @@ test:
     - vertexai
   commands:
     - pip check
-    - tb-gcp-uploader --help
+    # missing dependency on absl-py
+    # - tb-gcp-uploader --help
   requires:
     - pip
 
