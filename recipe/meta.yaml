@@ -1,5 +1,5 @@
 {% set name = "google-cloud-aiplatform" %}
-{% set version = "1.91.0" %}
+{% set version = "1.92.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/google_cloud_aiplatform-{{ version }}.tar.gz
-  sha256: b14e5e52b52b6012c7dc253beab34c511fdc53c69b13f436ddb06882c1a92cd7
+  sha256: 54e6f4ef74566d0e8d8a48e1cbe3ca46017e7a4030689d1cb1561115297630fd
 
 build:
   entry_points:
@@ -33,6 +33,7 @@ requirements:
     - google-cloud-bigquery-core >=1.15.0,<4.0.0,!=3.20.0
     - google-cloud-resource-manager >=1.3.3,<3.0.0
     - shapely <3.0.0
+    - google-genai >=1.0.0,<2.0.0
     # genai_requires
     - pydantic <3
     - typing_extensions
