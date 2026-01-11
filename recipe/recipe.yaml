@@ -1,0 +1,62 @@
+schema_version: 1
+
+context:
+  name: google-cloud-aiplatform
+  version: 1.133.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/google_cloud_aiplatform-${{ version }}.tar.gz
+  sha256: 3a6540711956dd178daaab3c2c05db476e46d94ac25912b8cf4f59b00b058ae0
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - tb-gcp-uploader=google.cloud.aiplatform.tensorboard.uploader_main:run_main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - google-api-core >=1.34.1,<3.0.0,!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*
+    - google-api-core-grpc
+    - google-auth >=2.47.0,<3.0.0
+    - proto-plus >=1.22.3,<2.0.0
+    - protobuf >=3.20.2,<7.0.0,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5
+    - packaging >=14.3
+    # for python >=3.13 to stay noarch: python
+    - google-cloud-storage >=2.10.0,<4.0.0
+    - google-cloud-bigquery-core >=1.15.0,<4.0.0,!=3.20.0
+    - google-cloud-resource-manager >=1.3.3,<3.0.0
+    - google-genai >=1.37.0,<2.0.0
+    # genai_requires
+    - pydantic <3
+    - typing_extensions
+    - docstring_parser <1
+
+tests:
+  - python:
+      imports:
+        - google
+        - vertexai
+      python_version: ${{ python_min }}.*
+      pip_check: true
+
+about:
+  summary: Vertex AI API client library
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/googleapis/python-aiplatform
+
+extra:
+  recipe-maintainers:
+    - xylar
