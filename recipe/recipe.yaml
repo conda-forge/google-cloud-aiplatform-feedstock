@@ -1,28 +1,32 @@
-{% set name = "google-cloud-aiplatform" %}
-{% set version = "1.132.0" %}
+schema_version: 1
+
+context:
+  name: google-cloud-aiplatform
+  version: 1.132.0
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: ${{ name|lower }}
+  version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/google_cloud_aiplatform-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/google_cloud_aiplatform-${{ version }}.tar.gz
   sha256: 345d113ffe2b6f705810453418dc75f3e0ad9354e499be75f6dac5f1464d30b4
 
 build:
-  entry_points:
-    - tb-gcp-uploader=google.cloud.aiplatform.tensorboard.uploader_main:run_main
+  number: 1
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - tb-gcp-uploader=google.cloud.aiplatform.tensorboard.uploader_main:run_main
 
 requirements:
   host:
-    - python {{ python_min }}
+    - python ${{ python_min }}.*
     - pip
     - setuptools
   run:
-    - python >={{ python_min }}
+    - python >=${{ python_min }}
     - google-api-core >=1.34.1,<3.0.0,!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*
     - google-api-core-grpc
     - google-auth >=2.14.1,<3.0.0
@@ -40,25 +44,24 @@ requirements:
     - typing_extensions
     - docstring_parser <1
 
-test:
-  imports:
-    - google
-    # vertex_ray is an extra and shouldn't be tested unless we want to add those extras
-    # - vertex_ray
-    - vertexai
-  commands:
-    - pip check
-    # missing dependency on absl-py
-    # - tb-gcp-uploader --help
-  requires:
-    - python {{ python_min }}
-    - pip
+tests:
+  - python:
+      imports:
+        - google
+        - vertexai
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pip
+    script:
+      - pip check
 
 about:
-  home: https://github.com/googleapis/python-aiplatform
   summary: Vertex AI API client library
   license: Apache-2.0
   license_file: LICENSE
+  homepage: https://github.com/googleapis/python-aiplatform
 
 extra:
   recipe-maintainers:
