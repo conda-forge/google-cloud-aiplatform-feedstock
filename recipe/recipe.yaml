@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: google-cloud-aiplatform
-  version: "1.153.0"
+  version: "1.153.1"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/google_cloud_aiplatform-${{ version }}.tar.gz
-  sha256: 657b349563207f6260319c893bc6f22de53205894cf9670088bce9a1b720e3e7
+  sha256: 445b6c683d5c630f174d81ae1f69f7da9e27e4d4ec5b70c5fe96de5c1247cfbc
 
 build:
   number: 0
@@ -37,7 +37,7 @@ requirements:
     - google-cloud-storage >=3.10.0,<4.0.0
     - google-cloud-bigquery-core >=1.15.0,<4.0.0,!=3.20.0
     - google-cloud-resource-manager >=1.3.3,<3.0.0
-    - google-genai >=1.75.0,<2.0.0
+    - google-genai >=1.66.0,<3.0.0
     - pydantic <3
     - typing_extensions
     - docstring_parser <1
