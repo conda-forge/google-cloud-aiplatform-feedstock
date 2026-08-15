@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: google-cloud-aiplatform
-  version: "1.163.0"
+  version: "1.164.0"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/google_cloud_aiplatform-${{ version }}.tar.gz
-  sha256: b570d22b145504e66f3f50f4bdeeae3c818ba46f330276566e80a42937ff53ef
+  sha256: 51fb881523631e591a3d11a46cb9d7bd390e05127fe1d08c596ddce3e45fed2d
 
 build:
   number: 0
@@ -27,18 +27,17 @@ requirements:
     - setuptools
   run:
     - python >=${{ python_min }}
-    - google-api-core >=1.34.1,<3.0.0,!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*
-    - google-api-core-grpc
+    - google-api-core-grpc >=1.34.1,<3.0.0,!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*
     - google-auth >=2.47.0,<3.0.0
     - certifi >=2023.7.22
     - proto-plus >=1.22.3,<2.0.0
     - protobuf >=3.20.2,<7.0.0,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5
     - packaging >=14.3
-    # more restrictive constraint for python >=3.13
+    # tightest of upstream's floors (python >=3.13) and ceilings (python <3.13)
     - google-cloud-storage >=3.10.0,<4.0.0
     - google-cloud-bigquery-core >=1.15.0,<4.0.0,!=3.20.0
     - google-cloud-resource-manager >=1.3.3,<3.0.0
-    # more restrictive constraint for python >=3.10
+    # tightest of upstream's floors (python >=3.10)
     - google-genai >=1.66.0,<3.0.0
     - pydantic <3
     - typing_extensions
@@ -49,7 +48,9 @@ tests:
       imports:
         - google
         - vertexai
-      python_version: ${{ python_min }}.*
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
       pip_check: true
 
 about:
