@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: google-cloud-aiplatform
-  version: "1.165.0"
+  version: "1.165.1"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/google_cloud_aiplatform-${{ version }}.tar.gz
-  sha256: 872b048cd8c089fdd58bd2ff1f531105f1af6078fb18b0a6710ff38aba493045
+  sha256: bd62ba7590255cacd66f9d0439eb731060af460d35bb48dbbeeefce9dfc0a359
 
 build:
   number: 0
